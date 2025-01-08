@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Add Role{% endblock %}
+
+{% block content %}
+<div class="form-container" style="border: 2px solid #4a90e2; border-radius: 10px; padding: 50px; background-color: #ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center; margin-left: 30%;">
+    <h1 style="margin-bottom: 20px; color: #333;">Create Role</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="role_name" ><strong>Role Name:</strong></label><br>
+            <input type="text" name="role_name" id="role_name" placeholder="Enter role name" required style="width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label for="description" ><strong>Role Description:</strong></label><br>
+            <input type="text" name="description" id="description" placeholder="Enter role description" required style="width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+        </div>
+        <input type="submit" value="Create" style="width: 90%; padding: 10px; margin: 10px 0; border: none; background-color: #4a90e2; color: white; border-radius: 5px; cursor: pointer;">
+    </form>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content" >
+    <h1>Role Management System</h1>
+    {% if roles %}
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Role Name</th>
+                        <th>Description</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for role in roles %}
+                    <tr>
+                        <td>{{ role.role_id }}</td>
+                        <td>{{ role.role_name }}</td>
+                        <td>{{ role.description }}</td>
+                        <td>{{ role.created_at }}</td>
+                        <td>{{ role.updated_at }}</td>
+                        <td>
+                            <button class="edit"><a href="update/{{ role.role_id }}" class="btn edit">Edit</a></button>
+                        </td>
+                        <td>
+                            <button class="delete"><a href="delete/{{ role.role_id }}" class="btn delete">Delete</a></button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No roles available. Please create one.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,188 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department Management System</title>
-    <style>
-       /* General Reset */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
-    flex-direction: column; /* Change to column for small screens */
-}
+{% extends 'base.html' %}
+{% load static %}
 
-@media (min-width: 768px) {
-    /* Sidebar and content will be side by side on larger screens */
-    body {
-        flex-direction: row;
-    }
-}
+{% block content %}
 
-/* Sidebar Styling */
-.sidebar {
-    width: 250px;
-    background-color: #2c3e50;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    flex-shrink: 0;
-}
-
-.sidebar h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 1.5em;
-    color: #ecf0f1;
-}
-
-.sidebar a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    display: block;
-    border-radius: 5px;
-    transition: background 0.3s;
-    text-align: center;
-}
-
-.sidebar a:hover {
-    background-color: #34495e;
-}
-
-/* Main Content Area */
-.content {
-    flex: 1;
-    padding: 40px;
-    background-color: #ecf0f1;
-    overflow-x: auto;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    font-size: 2em;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #bdc3c7;
-}
-
-th, td {
-    padding: 12px;
-    text-align: center;
-}
-
-th {
-    background-color: #2980b9;
-    color: white;
-}
-
-button a {
-    text-decoration: none;
-    color: white;
-}
-
-button {
-    background-color: #27ae60;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #2ecc71;
-}
-
-button.delete {
-    background-color: #e74c3c;
-}
-
-button.delete:hover {
-    background-color: #c0392b;
-}
-
-/* Responsiveness for small screens */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
-
-    .content {
-        padding: 20px;
-        overflow-x: hidden;
-    }
-
-    h1 {
-        font-size: 1.5em;
-    }
-
-    table, th, td {
-        font-size: 14px;
-    }
-
-    button {
-        padding: 6px 10px;
-    }
-
-    .sidebar a {
-        padding: 8px;
-    }
-}
-
-    </style>
-</head>
-<body>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>Dashboard</h2>
-        <a href="/adddepart">Create Department</a>
-        <a href="#">View Departments</a>
-        <a href="#">Reports</a>
-        <a href="#">Settings</a>
-    </div>
 
     <!-- Main Content Area -->
     <div class="content">
         <h1>Department Management System</h1>
-        <table>
-            <tr>
-                <th>Sr.No</th>
-                <th>Department Name</th>
-                <th>Description</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            {% for depart in departs %}
-            <tr>
-                <td>{{ depart.dept_id }}</td>
-                <td>{{ depart.dept_name }}</td>
-                <td>{{ depart.description }}</td>
-                <td>
-                    <button><a href="update/{{ depart.dept_id }}">Edit</a></button>
-                </td>
-                <td>
-                    <button class="delete"><a href="delete/{{ depart.dept_id }}">Delete</a></button>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Department Name</th>
+                        <th>Description</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for depart in departs %}
+                    <tr>
+                        <td>{{ depart.dept_id }}</td>
+                        <td>{{ depart.dept_name }}</td>
+                        <td>{{ depart.description }}</td>
+                        <td>
+                            <button class="edit"><a href="update/{{ depart.dept_id }}">Edit</a></button>
+                        </td>
+                        <td>
+                            <button class="delete"><a href="delete/{{ depart.dept_id }}">Delete</a></button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-
+    {% endblock %}
 </body>
 </html>
